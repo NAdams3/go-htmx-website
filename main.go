@@ -47,7 +47,7 @@ func main() {
     http.HandleFunc("/", Home)
     http.HandleFunc("/contact", Contact)
 
-    http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("/views/assets"))))
+    http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("views/assets/"))))
 
     err = http.ListenAndServe(":3000", nil)
     
