@@ -29,17 +29,14 @@ func main() {
 
     var err error
     
-    templateDefs := []string{"page", "home", "contact"}
+    templateDefs := []string{"home", "contact"}
     templates = make(map[string]*template.Template)
 
     // parse html
-    for i, name := range templateDefs {
-        if i == 0 {
-            templates[name] = template.New(name)
-            templates[name] = getTemplate(*templates[name], "views/parts/"+name+".html")
-        }
+    for _, name := range templateDefs {
         if templates[name] == nil {
-            templates[name] = getTemplate(*templates["page"], "views/"+name+".html")
+            templates[name] = template.New(name)
+            templates[name] = getTemplate(templates[name], "views/parts/page.html", "views/"+name+".html")
         }
     }
 
@@ -80,8 +77,8 @@ func Contact(w http.ResponseWriter, r *http.Request) {
     Render(w, templates["contact"], nil)
 }
 
-func getTemplate(t template.Template, filePath string) *template.Template {
-    templatePart, err := t.ParseFiles(filePath)
+func getTemplate(t *template.Template, filePaths ...string) *template.Template {
+    templatePart, err := t.ParseFiles(filePaths...)
     if err != nil {
         slog.Debug("error parsing template file", err)
         panic(err)

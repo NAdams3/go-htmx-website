@@ -1,10 +1,155 @@
+
+/* green = #354230 */
+/* orange = #423035 */
+/* purple = #303542 */
+/* gray = #373737 */
+
 html {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
+    color: #373737;
+    font-size: 15px;
+    background-color: rgba(48, 53, 66, 0.15);
 }
 
-p {
-    font-weight: 'bold';
+h1, h2, h3, h4, h5, h6 {
+    color: #354230;
+    font-family: "Electrolize", sans-serif;
+    text-transform: uppercase;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+h5 {
+    font-size: 1.1em;
+}
+
+h4 {
+    font-size: 1.3em;
+}
+
+h3 {
+    font-size: 1.6em;
+}
+
+h2 {
+    font-size: 2.0em;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+li::marker {
+    color: #423035;
+}
+
+b, .bold {
+    color: #303542;
+    font-weight: bold;
+}
+
+.electrolize {
+    font-family: "Electrolize", sans-serif;
+}
+
+.header {
+    color: white;
+    background-color: #354230;
+    padding: 20px 40px;
+    font-size: 27px;
+    min-height: 11vh;
+}
+
+.header .electrolize {
+    font-size: 40px;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+}
+
+.header a:hover {
+    text-decoration: none;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px 60px;
+    min-height: 69vh;
+}
+
+.footer {
+    color: white;
+    background-color: #303542;
+    padding: 20px 40px;
+    min-height: 20vh;
+}
+
+a {
+    color: #423035;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button, .button {
+    background-color: #303542;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+button.alternate, .button.alternate {
+    background-color: white;
+    color: #303542;
+}
+
+button.warn, .button.warn {
+    background-color: #423035;
+}
+
+button:hover, .button:hover {
+    text-decoration: none;
+    position: relative;
+    right: 1px;
+    top: 1px;
+}
+
+.joke, .punch-line {
+    display: none;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.row.gutters {
+    margin-left: -2%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.gutters .col-6 {
+    width: calc(50% - 2%);
+    margin-left: 2%;
 }
 
