@@ -2,9 +2,13 @@ package main
 
 import (
 	"fmt"
+	"html/template"
+	"log/slog"
 	"net/http"
-    "log/slog"
-    "html/template"
+	"net/url"
+
+	sendgrid "github.com/sendgrid/sendgrid-go"
+	"github.com/sendgrid/sendgrid-go/helpers/mail"
 )
 
 type header struct {
@@ -25,8 +29,6 @@ var templates map[string]*template.Template
 
 func main() {
 
-    FilterTest()
-
     var err error
     
     templateDefs := []string{"home", "contact"}
@@ -43,6 +45,7 @@ func main() {
     // routes
     http.HandleFunc("/", Home)
     http.HandleFunc("/contact", Contact)
+    http.HandleFunc("/contactSubmit", ContactSubmit)
 
     http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("views/assets/"))))
 
@@ -77,6 +80,23 @@ func Contact(w http.ResponseWriter, r *http.Request) {
     Render(w, templates["contact"], nil)
 }
 
+func ContactSubmit(w http.ResponseWriter, r *http.Request) {
+    err := r.ParseForm()
+    if err != nil {
+        slog.Debug("error parsing form data", err)
+        panic(err)
+    }
+
+    fmt.Println("name: ", r.Form["name"])
+    fmt.Println("email: ", r.Form["email"])
+    fmt.Println("message: ", r.Form["message"])
+
+    fmt.Println("in contact submit")
+    sendMail(r.Form)
+
+    http.ServeFile(w, r, "views/parts/contact-form.html")
+}
+
 func getTemplate(t *template.Template, filePaths ...string) *template.Template {
     templatePart, err := t.ParseFiles(filePaths...)
     if err != nil {
@@ -95,5 +115,23 @@ func getPageData() *pageData {
     data := pageData{Header: header, Content: content, Footer: footer}
 
     return &data
+}
+
+func sendMail(form url.Values) {
+    from := mail.NewEmail("Example User", "test@example.com")
+	subject := "Sending with Twilio SendGrid is Fun"
+	to := mail.NewEmail("Example User", "")
+	plainTextContent := "and easy to do anywhere, even with Go"
+	htmlContent := "<strong>and easy to do anywhere, even with Go</strong>"
+	message := mail.NewSingleEmail(from, subject, to, plainTextContent, htmlContent)
+	client := sendgrid.NewSendClient("")
+	response, err := client.Send(message)
+	if err != nil {
+        slog.Debug("error sending mail", err)
+	} else {
+		fmt.Println(response.StatusCode)
+		fmt.Println(response.Body)
+		fmt.Println(response.Headers)
+	}
 }
 

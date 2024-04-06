@@ -128,6 +128,7 @@ button:hover, .button:hover {
     position: relative;
     right: 1px;
     top: 1px;
+    cursor: pointer;
 }
 
 .joke, .punch-line {
@@ -153,3 +154,23 @@ button:hover, .button:hover {
     margin-left: 2%;
 }
 
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    border: solid 2px #423035;
+}
+
+.form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form .row {
+    margin-top: 16px;
+}
+
+.centered {
+    text-align: center;
+}
+    
