@@ -4,10 +4,21 @@ services:
       dockerfile: Dockerfile
       context: .
       target: dev
-      
+
+    environment:
+      SENDGRID_API_KEY: "test"
+      DEV_EMAIL: "nicholas.adams333@gmail.com"
+
     volumes:
       - .:/opt/app/api
 
     ports:
       - "80:3000"
+
+secrets:
+  sendgrid_api_key:
+      environment: "SENDGRID_API_KEY"
+
+  dev_email:
+    environment: "DEV_EMAIL"
 
