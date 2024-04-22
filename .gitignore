@@ -1,4 +1,5 @@
 tmp
 crypto.go
+crypto_test.go
 .keys
 

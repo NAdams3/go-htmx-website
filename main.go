@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log/slog"
 	"net/http"
+	"os"
 )
 
 type header struct {
@@ -78,21 +79,24 @@ func ContactSubmit(w http.ResponseWriter, r *http.Request) {
 
 	err := r.ParseForm()
 	if err != nil {
-		slog.Error("error parsing form data", err)
+		slog.Error("error parsing form data", "error", err)
 	}
 
-	fmt.Println("name: ", r.Form["name"])
-	fmt.Println("email: ", r.Form["email"])
-	fmt.Println("message: ", r.Form["message"])
+	// NATODO do we need to sanitze this?
+	message := fmt.Sprintf("FROM: %v \n EMAIL: %v \n \n %v \n", r.Form["name"][0], r.Form["email"][0], r.Form["message"][0])
 
-	fmt.Println("in contact submit")
+	toEmail, err := decrypt(os.Getenv("DEV_EMAIL"))
+	if err != nil {
+		slog.Error("Error decrypting dev email", "error", err)
+	}
 
-	err = sendEmail(r.Form["name"][0], r.Form["email"][0], "", "")
+	_, err = sendEmail("Web Admin", toEmail, "Contact Form", "Contact Form Submit", message)
 	if err != nil {
 		slog.Error("error sending email", err)
 	}
 
 	http.ServeFile(w, r, "views/parts/contact-form.html")
+
 }
 
 func getTemplate(t *template.Template, filePaths ...string) *template.Template {

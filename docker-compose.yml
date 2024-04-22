@@ -7,7 +7,8 @@ services:
 
     environment:
       SENDGRID_API_KEY: "mBPCrNO8GvV2xS4Q1LtZwEYQH/NcQ5ONy9NE5I/p+YrKCXJa5Xh1MWkd51zwlQr7n9WINfVRMaR5NLGdESeR9b0y62bZ"
-      TO_EMAIL: "blockade.web@gmail.com"
+      FROM_EMAIL: "blockade.web@gmail.com"
+      DEV_EMAIL: "pT2Pqv2HPMIWlB0giL0swcFuQw/4LzN9Yob4"
 
     volumes:
       - .:/opt/app/api
@@ -20,5 +21,5 @@ secrets:
       environment: "SENDGRID_API_KEY"
 
   dev_email:
-    environment: "TO_EMAIL"
+    environment: "DEV_EMAIL"
 
