@@ -58,14 +58,18 @@ b, .bold {
 
 .header {
     color: white;
-    background-color: #354230;
-    padding: 20px 40px;
     font-size: 27px;
     min-height: 11vh;
+    border: 5px solid #354230;
 }
 
 .header .electrolize {
     font-size: 40px;
+}
+
+.logo-container {
+    background-color: #354230;
+        padding: 20px 40px;
 }
 
 .header a {
@@ -75,6 +79,28 @@ b, .bold {
 
 .header a:hover {
     text-decoration: none;
+}
+
+.menu-container {
+    width: 100%;
+}
+
+.menu {
+    margin: 0 auto;
+}
+
+.menu a {
+    color: #354230;
+    text-transform: uppercase;
+}
+
+.menu ul {
+    margin: 0;
+    list-style: none;
+}
+.menu li {
+    display: inline-block;
+    padding: 3px 15px 1px 3px;
 }
 
 .wrapper {

@@ -1,35 +1,50 @@
 {{ define "page" }}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie-edge">
-        <title>{{ .Header.Title }}</title>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-        
-        <link rel="stylesheet" href="assets/css/reset.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
-    </head>
-    <body>
-        <div class="header">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>{{ .Header.Title }}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Electrolize&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-container">
             <div class="logo">
                 <a href="/">
                     <span class="electrolize">B<span class="show-on-hover">L0CK4D</span>3</span><span>.dev()</span>
                 </a>
             </div>
         </div>
-        <div class="wrapper">
-            {{ template "content" .Content }}
+        <div class="menu-container">
+            <div class="menu">
+                <ul>
+                    <li><a href="/work">Work</a></li>
+                    <li><a href="/play">Play</a></li>
+                    <li><a href="/tools">Tools</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="footer">
-            <span>Copyright &copy; {{ .Footer.Year }} BLOCKADE.dev. All rights reserved.</span>
-        </div>
-        <script src="https://unpkg.com/htmx.org@1.9.11"></script>
-    </body>
+    </div>
+    <div class="wrapper">
+        {{ template "content" .Content }}
+    </div>
+    <div class="footer">
+        <span>Copyright &copy; {{ .Footer.Year }} BLOCKADE.dev. All rights reserved.</span>
+    </div>
+    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+</body>
+
 </html>
 {{ end }}
-
