@@ -11,7 +11,7 @@ services:
       DEV_EMAIL: "pT2Pqv2HPMIWlB0giL0swcFuQw/4LzN9Yob4"
 
     volumes:
-      - .:/opt/app/api
+      - .:/opt/app
 
     ports:
       - "80:3000"
